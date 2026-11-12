@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101827" />
+    <title>DSA Practice Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top" aria-label="DSA Practice Tracker home"><span class="brand-mark">⌘</span> DSA<span class="brand-light">/TRACK</span></a>
+        <span class="local-badge"><span class="status-dot"></span> Saved on this device</span>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">YOUR CONSISTENCY, VISUALIZED</p>
+          <h1>Build your <span>problem-solving</span> habit.</h1>
+          <p class="intro-copy">Log practice, follow your progress by topic, and keep showing up one problem at a time.</p>
+        </div>
+        <div class="today-card"><span class="today-label">TODAY</span><strong id="todayDate"></strong><span id="streakLabel" class="streak-label">Start a practice streak</span></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Practice statistics">
+        <article class="stat-card"><span class="stat-icon purple">▦</span><div><p>Total solved</p><strong id="totalSolved">0</strong><small>problems logged</small></div></article>
+        <article class="stat-card"><span class="stat-icon green">↗</span><div><p>This week</p><strong id="weeklySolved">0</strong><small>problems this week</small></div></article>
+        <article class="stat-card"><span class="stat-icon orange">ϟ</span><div><p>Current streak</p><strong><span id="streakCount">0</span><small class="inline-unit"> days</small></strong><small>keep the momentum</small></div></article>
+        <article class="stat-card"><span class="stat-icon blue">◷</span><div><p>Practice time</p><strong id="totalMinutes">0</strong><small>minutes recorded</small></div></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel form-panel">
+          <div class="section-heading"><div><p class="eyebrow">PRACTICE LOG</p><h2>Log a session</h2></div><span class="heading-icon">＋</span></div>
+          <form id="practiceForm">
+            <label for="problemName">Problem name</label>
+            <input id="problemName" name="problemName" type="text" maxlength="80" placeholder="e.g. Two Sum" required />
+
+            <div class="form-row">
+              <div><label for="topic">Topic</label><select id="topic" name="topic" required></select></div>
+              <div><label for="difficulty">Difficulty</label><select id="difficulty" name="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+            </div>
+
+            <div class="form-row">
+              <div><label for="practiceDate">Date</label><input id="practiceDate" name="practiceDate" type="date" required /></div>
+              <div><label for="duration">Minutes <span class="optional">(optional)</span></label><input id="duration" name="duration" type="number" min="0" max="1440" placeholder="30" /></div>
+            </div>
+
+            <label for="problemLink">Problem link <span class="optional">(optional)</span></label>
+            <input id="problemLink" name="problemLink" type="url" maxlength="500" placeholder="https://…" />
+            <button class="button primary full-width" type="submit">Add to practice log <span aria-hidden="true">↗</span></button>
+            <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="panel progress-panel">
+          <div class="section-heading"><div><p class="eyebrow">SKILL MAP</p><h2>Topic progress</h2></div><span class="subtle-label">Problems solved</span></div>
+          <div id="topicProgress" class="topic-progress"></div>
+        </section>
+
+        <section class="panel activity-panel">
+          <div class="section-heading"><div><p class="eyebrow">LAST 7 DAYS</p><h2>Weekly activity</h2></div><span class="subtle-label">Solved per day</span></div>
+          <div id="weeklyChart" class="weekly-chart" role="img" aria-label="Problems solved each of the last seven days"></div>
+        </section>
+
+        <section class="panel log-panel">
+          <div class="section-heading log-heading"><div><p class="eyebrow">YOUR HISTORY</p><h2>Recent problems</h2></div><label class="filter-label" for="topicFilter"><span class="sr-only">Filter by topic</span><select id="topicFilter"><option value="all">All topics</option></select></label></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Problem</th><th>Topic</th><th>Difficulty</th><th>Date</th><th class="time-column">Time</th><th><span class="sr-only">Actions</span></th></tr></thead>
+              <tbody id="problemRows"></tbody>
+            </table>
+            <div id="emptyState" class="empty-state"><span>✦</span><strong>Your practice log starts here</strong><p>Add your first solved problem to see your progress.</p></div>
+          </div>
+        </section>
+      </div>
+      <footer>Small steps add up. Keep practicing. <span>Progress is stored locally in your browser.</span></footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
